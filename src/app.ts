@@ -28,12 +28,14 @@ app.use(express.json());
 app.use('/:domain', share);
 
 app.use((err: Error, req: express.Request, res: express.Response) => {
-	console.error(err);
-	const ua = req.headers['user-agent'];
-
-	if (/^(facebookexternalhit)|(Twitterbot)|(Pinterest)/gi.test(ua!)) {
-		res.status(500).send();
-	} else {
+	try {
+		const ua = req.headers['user-agent'];
+		if (/^(facebookexternalhit)|(Twitterbot)|(Pinterest)/gi.test(ua!)) {
+			res.status(500).send();
+		} else {
+			res.redirect('https://market.wilderworld.com/');
+		}
+	} catch {
 		res.redirect('https://market.wilderworld.com/');
 	}
 });
