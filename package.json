@@ -4,7 +4,8 @@
   "description": "API for sharing NFTs to social media",
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node build/index.js",
     "dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
