@@ -16,7 +16,7 @@ const share = async (
 		next(404);
 	}
 
-	if (/^(facebookexternalhit)|(Twitterbot)|(Pinterest)/gi.test(ua!)) {
+	if (/^(facebookexternalhit)|(Twitterbot)|(Pinterest)/gi.test(ua)) {
 		try {
 			const domainId = domainNameToId('wilder.' + domain);
 			const domainData = await sdk.getDomainById(domainId);
