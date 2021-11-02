@@ -9,6 +9,7 @@ const share = async (
 	res: express.Response,
 	next: express.NextFunction,
 ): Promise<void> => {
+	console.log('headers', req.headers);
 	const ua = req.headers['user-agent'];
 	const { domain } = req.params;
 
@@ -16,7 +17,7 @@ const share = async (
 		next(404);
 	}
 
-	if (/^(facebookexternalhit)|(Twitterbot)|(Pinterest)/gi.test(ua)) {
+	if (/^(facebookexternalhit)|(Twitterbot)|(Pinterest)/gi.test(ua!)) {
 		try {
 			const domainId = domainNameToId('wilder.' + domain);
 			const domainData = await sdk.getDomainById(domainId);
@@ -34,7 +35,8 @@ const share = async (
 				description: metadata!.description,
 				ipfsHash: metadata!.ipfsHash,
 			});
-		} catch {
+		} catch(err) {
+			console.log('error', err);
 			next(503);
 		}
 	} else {

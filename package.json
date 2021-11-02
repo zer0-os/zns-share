@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "API for sharing NFTs to social media",
   "main": "src/index.ts",
-  "scripts": {   
+  "scripts": {
     "build": "tsc",
     "start": "ts-node ./src/index.ts",
     "dev": "nodemon ./src/index.ts",
