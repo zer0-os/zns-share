@@ -30,6 +30,9 @@ const share = async (
 			) {
 				next(503);
 			}
+			console.log('metadata', metadata);
+			console.log('image-url', `https://res.cloudinary.com/fact0ry/image/upload/c_fit,f_auto,h_700,w_700/v1/zns/${metadata!.ipfsHash}.jpg`);
+			console.log('video-url', `https://res.cloudinary.com/fact0ry/video/upload/c_fit,f_auto,h_700,w_700/v1/zns/${metadata!.ipfsHash}.jpg`);
 			res.render('headers', {
 				title: metadata!.title,
 				description: metadata!.description,
