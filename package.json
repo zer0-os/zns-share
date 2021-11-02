@@ -24,6 +24,7 @@
     "@zero-tech/zns-sdk": "^0.0.22",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
     "env-var": "^7.0.1",
     "ethers": "^5.5.1",
     "express": "^4.17.1",
@@ -38,7 +39,6 @@
     "@types/express": "^4.17.13",
     "@types/morgan": "^1.9.3",
     "@types/node": "^16.11.6",
-    "ejs": "^3.1.6",
     "eslint": "^8.1.0",
     "eslint-plugin-prettier": "^4.0.0"
   },
