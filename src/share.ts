@@ -1,4 +1,5 @@
 import express from 'express';
+import got from 'got';
 
 // Library
 import sdk, { domainNameToId } from './lib/sdk';
@@ -31,12 +32,19 @@ const share = async (
 				next(503);
 			}
 			console.log('metadata', metadata);
-			console.log('image-url', `https://res.cloudinary.com/fact0ry/image/upload/c_fit,f_auto,h_700,w_700/v1/zns/${metadata!.ipfsHash}.jpg`);
-			console.log('video-url', `https://res.cloudinary.com/fact0ry/video/upload/c_fit,f_auto,h_700,w_700/v1/zns/${metadata!.ipfsHash}.jpg`);
+			const ipfsImageURL = `https://res.cloudinary.com/fact0ry/image/upload/c_fit,f_auto,h_700,w_700/v1/zns/${metadata!.ipfsHash}.jpg`;
+			const ipfsVideoBasedImageURL = `https://res.cloudinary.com/fact0ry/video/upload/c_fit,f_auto,h_700,w_700/v1/zns/${metadata!.ipfsHash}.jpg`;
+			const {statusCode} = await got.get(ipfsImageURL, {throwHttpErrors: false});
+			let imageURL = ipfsImageURL;
+			if(statusCode == 404) {
+				imageURL = ipfsVideoBasedImageURL
+			}
+			console.log('imageURL', imageURL);
 			res.render('headers', {
 				title: metadata!.title,
 				description: metadata!.description,
 				ipfsHash: metadata!.ipfsHash,
+				imageURL
 			});
 		} catch(err) {
 			console.log('error', err);

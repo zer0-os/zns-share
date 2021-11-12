@@ -28,7 +28,7 @@ app.use(express.json());
 app.use('/:domain', share);
 
 app.use((req: express.Request, res: express.Response) => {
-	console.log('headers', req.headers);
+	console.log('user-agent', req.headers['user-agent']);
 	try {
 		const ua = req.headers['user-agent'];
 		if (/^(facebookexternalhit)|(Twitterbot)|(Pinterest)/gi.test(ua!)) {
