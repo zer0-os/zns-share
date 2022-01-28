@@ -51,7 +51,7 @@ const share = async (
 			next(503);
 		}
 	} else {
-		res.redirect('https://market.wilderworld.com/#/' + domain);
+		res.redirect('https://app.wilderworld.com/market/' + domain);
 	}
 };
 
